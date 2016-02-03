@@ -1,0 +1,63 @@
+#!/usr/bin/env node
+(function () {
+    "use strict";
+
+    var fs = require("fs")
+        , md_swiper = require("../lib/mdshow")
+        , nopt = require("nopt")
+        , opts
+        , rimraf = require("rimraf")
+        , $ = require("../lib/helper")
+        ;
+
+    var $ = require("../lib/helper");
+    var path = require("path");
+
+    var path = require("path");
+    opts = nopt(
+        {"src": path, "template": String, "output": path},
+        {"s": ["--src"], "t": ["--template", "simple"], "o": ["--output"]}
+    );
+
+    // 打印帮助信息
+    if (opts.help) {
+        var name = process.argv[1].split("/").pop()
+        console.warn(require("util").format(
+            "usage: %s -s FILE -o DIR",
+            name
+        ));
+        process.exit(0);
+    }
+
+    var sourceDir = opts.src;
+    var outputDir = opts.output;
+
+    if (!sourceDir || !outputDir){
+
+        console.warn("usage: mdshow -s test/demo -o test/publish");
+        return;
+    }
+
+    if (!$.exists(sourceDir)){
+
+        console.warn("sourceDir not exists!");
+        return;
+    }
+
+    var template = opts.template || "simple";
+
+    var sourceDirName = path.basename(sourceDir);
+    outputDir = path.join(outputDir,sourceDirName);
+
+    //删除原有的输出目录
+    if ($.exists(outputDir)){
+        rimraf.sync(outputDir);
+    }
+
+    if (!$.exists(outputDir)){
+        $.mkdir(outputDir);
+    }
+
+    md_swiper.make_swiper(sourceDir,template,outputDir);
+
+}());

@@ -1,0 +1,28 @@
+{
+  "name": "mdshow",
+  "version": "0.1.10",
+  "description": "百纳的 Markdown 转月刊程序",
+  "main": "./bin/mdshow.js",
+  "bin":{
+    "mdshow":"./bin/mdshow"
+  },
+  "scripts": {
+    "test": "node bin/mdshow -s test/demo/ -t simple -o test/publish"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "keywords": [
+    "Markdown",
+    "滑动"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^2.4.1",
+    "markdown": "^0.5.0",
+    "marked": "^0.3.5",
+    "rimraf": "^2.5.1"
+  }
+}
