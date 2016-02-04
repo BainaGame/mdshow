@@ -1,6 +1,6 @@
 {
   "name": "mdshow",
-  "version": "0.1.10",
+  "version": "0.1.11",
   "description": "百纳的 Markdown 转月刊程序",
   "main": "./bin/mdshow.js",
   "bin":{
